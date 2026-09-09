@@ -1,11 +1,27 @@
 name: demo-practise
-on: workflow_dispatch
+on: 
+  workflow_dispatch:
+    inputs:
+      environment:
+       description: hii devops dep
+       required: true
+       default: 'devops'
+       type: choice
+       options:
+         - devops
+         - test
+         - prod
+      artifact_tag:
+       description: tag for options
+       required: true
 jobs:
  devops:
   runs-on: ubuntu-latest
   steps:
-    - name: deifing the jobs
-      run: echo "this is devops job"
+    - name: env value
+      run: |
+       echo "${{ inputs.environment }}this is devops job"
+       echo "${{ inputs.artifact_tag }}tag for devops"
  test:
    runs-on: ubuntu-latest
    needs: devops
