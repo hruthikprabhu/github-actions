@@ -1,13 +1,12 @@
-name: env name
+name: env-demo
 on: push
+
 jobs:
   build:
-   runs-on: ubuntu-latest
-   env: 
-     my_name: "hruthik"
-   steps:
-     - name: environr mvariable
-       run: |
-        echo "hii this is ${{vars.my_name}}"
-        echo "hii how are you ${{vars.my_name}}"
-       
+    runs-on: ubuntu-latest
+    env:                     
+      MY_NAME: "hruthik"     
+    steps:
+      - name: environment variable
+        run: |
+          echo "hii this is ${{ env.MY_NAME }}"
