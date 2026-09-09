@@ -1,9 +1,13 @@
-name: variable-demo
+name: env name
 on: push
 jobs:
-  main:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check condition
-        if: github.actor == 'hruhtikprabhu' || github.actor == 'shashnak'
-        run: echo "${{ github.actor }} has pushed"
+  build:
+   runs-on: ubuntu-latest
+   env: 
+     my_name: "hruthik"
+   steps:
+     - name: environr mvariable
+       run: |
+        echo "hii this is ${{vars.my_name}}"
+        echo "hii how are you ${{vars.my_name}}"
+       
