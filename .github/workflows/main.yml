@@ -1,12 +1,5 @@
 name: variable-demo
-
-on:
-  push:
-    branches:
-      - main
-      - devops
-      - test
-
+on: push
 jobs:
   main:
     runs-on: ubuntu-latest
