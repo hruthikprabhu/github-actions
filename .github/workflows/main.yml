@@ -4,5 +4,18 @@ jobs:
  devops:
   runs-on: ubuntu-latest
   steps:
-    - name: checkout the code index.html
-      uses: actions/checkout@v4
+    - name: deifing the jobs
+      run: echo "this is devops job"
+ test:
+   runs-on: ubuntu-latest
+   needs: devops
+   steps:
+     - name: defing the jobs of test
+       run:  echo "this shld run after the devops"
+ prod:
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: prod dep shld checkouth the code 
+        uses: actions/checkout@v4
+        
