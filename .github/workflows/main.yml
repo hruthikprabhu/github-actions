@@ -1,37 +1,16 @@
-name: demo-practise
-on: 
-  workflow_dispatch:
-    inputs:
-      environment:
-       description: hii devops dep
-       required: true
-       default: 'devops'
-       type: choice
-       options:
-         - devops
-         - test
-         - prod
-      artifact_tag:
-       description: tag for options
-       required: true
+name: variable-demo
+
+on:
+  push:
+    branches:
+      - main
+      - devops
+      - test
+
 jobs:
- devops:
-  runs-on: ubuntu-latest
-  steps:
-    - name: env value
-      run: |
-       echo "${{ inputs.environment }}this is devops job"
-       echo "${{ inputs.artifact_tag }}tag for devops"
- test:
-   runs-on: ubuntu-latest
-   needs: devops
-   steps:
-     - name: defing the jobs of test
-       run:  echo "this shld run after the devops"
- prod:
+  main:
     runs-on: ubuntu-latest
-    needs: test
     steps:
-      - name: prod dep shld checkouth the code 
-        uses: actions/checkout@v4
-        
+      - name: Check condition
+        if: github.actor == 'hruhtikprabhu' || github.actor == 'shashnak'
+        run: echo "${{ github.actor }} has pushed"
